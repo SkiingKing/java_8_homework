@@ -59,9 +59,7 @@ class OrderStats {
      * @return boolean, representing if every order in the stream contains product of specified color
      */
     static Boolean hasColorProduct(final Stream<Order> orders, final Product.Color color) {
-        return orders.
-               flatMap(s->s.getOrderItems().stream()).
-               anyMatch(x->x.getProduct().getColor().equals(color));
+        return orders.map(x -> x.getOrderItems()).allMatch(x -> x.stream().anyMatch(el -> el.getProduct().getColor() == color) == true);
     }
 
     /**
